@@ -1,0 +1,98 @@
+{% extends 'events/base.html' %}
+{% load static %}
+
+{% block title %}Home - Tech Horizon{% endblock %}
+
+{% block content %}
+    <!-- Hero Section -->
+    <section class="hero">
+        <h2>Explore Your Path in Tech</h2>
+        <p>Discover exciting fields in technology and find the right career path for you!</p>
+        <a href="#career-paths" class="cta-btn">Get Started</a>
+    </section>
+
+    <!-- Career Path Section -->
+    <section id="career-paths" class="career-paths">
+        <div class="career-card">
+            <h3>Software Development</h3>
+            <p>Build and design software applications for various platforms.</p>
+        </div>
+        <div class="career-card">
+            <h3>Cybersecurity</h3>
+            <p>Protect data and networks from digital threats and attacks.</p>
+        </div>
+        <div class="career-card">
+            <h3>Data Science</h3>
+            <p>Analyze and interpret complex data to inform business decisions.</p>
+        </div>
+        <div class="career-card">
+            <h3>Artificial Intelligence</h3>
+            <p>Work on algorithms that enable machines to mimic human intelligence.</p>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="events">
+        <h2>Upcoming Events</h2>
+        <p class="event">Date: November 20, 2024 - Location: Tech Hub Conference Center</p>
+        <p class="event">Workshop: Coding Basics for Beginners - November 25, 2024</p>
+    </section>
+
+    <!-- Speakers Section -->
+    <section id="speakers" class="speakers">
+        <h2>Meet the Speakers</h2>
+        <div class="speaker-card">
+            <h3>Jane Doe</h3>
+            <p>Expert in AI and Machine Learning</p>
+        </div>
+        <div class="speaker-card">
+            <h3>John Smith</h3>
+            <p>Cybersecurity Specialist</p>
+        </div>
+    </section>
+
+        <!-- Registration Form Section -->
+        <section id="register" class="form-section"> 
+            <h2>Register for Tech Horizon</h2>
+            <div class="form-container">
+                <form action="{% url 'register' %}" method="post" id="registration-form">
+                    {% csrf_token %}
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <div class="error-message" style="display:none; color:red; font-size: 12px;">Please enter a valid email.</div>
+                    <select name="interest" id="interest" required>
+                        <option value="" disabled selected>Select an Area of Interest</option>
+                        <option value="software-development">Software Development</option>
+                        <option value="cybersecurity">Cybersecurity</option>
+                        <option value="data-science">Data Science</option>
+                        <option value="ai">Artificial Intelligence</option>
+                    </select>
+                    <div class="error-message" id="interest-error" style="display:none; color:red; font-size: 12px;">
+                        Please select an interest.
+                    </div>
+                    <button type="submit">Register Now</button>
+                </form>
+            </div>
+        </section>
+                <!-- Display messages for form feedback -->
+            {% if messages %}
+                <div class="messages-container">
+                    {% for message in messages %}
+                        <p class="message {{ message.tags }}">{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+    
+        {% comment %} <!-- Login Form Section -->
+        <section id="login" class="form-section">
+            <h2>Login to Your Account</h2>
+            <div class="form-container">
+                <form action="#" method="post">
+                    {% csrf_token %}
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <button type="submit">Login</button>
+                </form>
+            </div>
+        </section> {% endcomment %}
+{% endblock %}

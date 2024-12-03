@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Tech Horizon{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'events/style.css' %}">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+
+        <h1 id="tech-horizon" >Tech Horizon</h1>
+
+        <nav>
+            
+            <a href="#career-paths">Career Paths</a>
+            <a href="#events">Events</a>
+            <a href="#speakers">Speakers</a>
+            <a href="{% url 'register' %}">Register</a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}">Logout</a>
+            <a href="{% url 'dashboard' %}">Dashboard</a>
+            {% else %}
+            <a href="{% url 'admin-login' %}">Admin</a>
+            {% endif %}
+            {% comment %} <a href="{% url 'login' %}">Login</a> {% endcomment %}
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Tech Horizon | <a href="#">Contact Us</a> | <a href="#">FAQ</a></p>
+        <p>Follow us on <a href="#">Social Media</a></p>
+    </footer>
+
+       {% comment %} <script src="{% static 'events/script.js' %}"></script> {% endcomment %}
+       <script src="{% static 'events/scripts.js' %}"></script>
+
+</body>
+
+
+</html>
